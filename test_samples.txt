@@ -1,0 +1,4 @@
+Users:
+{"userName":"xiaoming","password":"123456","email":"ming@gmail.com","gender":"M","city":"Zurich"}
+{"userName":"Tom","password":"hfeuighia","email":"tom@gmail.com","gender":"M","city":"Munich"}
+{"userName":"Jenny","password":"cueihai","email":"jenny@gmail.com","gender":"F","city":"London"}
