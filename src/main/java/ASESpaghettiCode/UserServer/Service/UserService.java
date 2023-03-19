@@ -28,7 +28,7 @@ public class UserService {
     }
     // register
     public User createUser(User newUser) {
-        newUser.setToken("");
+        newUser.setToken(UUID.randomUUID().toString());
         checkIfUserExists(newUser);
         newUser = userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);

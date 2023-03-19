@@ -53,7 +53,13 @@ public class UserController {
         User user = userService.getUserById(userId);
         userService.logoutUser(user);
     }
-
-
+    //get user
+    @GetMapping("/users/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public User user (@PathVariable("userId") String userId) {
+        User user = userService.getUserById(userId);
+        return user;
+    }
 
 }
