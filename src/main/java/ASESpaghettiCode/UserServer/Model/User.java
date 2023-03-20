@@ -12,6 +12,7 @@ public class User{
     public String username;
     public String password;
     public String token;
+    public String info;
 
     public User(String username, String password, String token){
         this.password=password;
@@ -51,11 +52,20 @@ public class User{
         this.token = token;
     }
 
+    public String getInfo(){
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + userId + '\'' +
                 ", username='" + username + '\'' +
-                ", password=" + password+'}';
+                ", password=" + password+'\''+
+                ", info=" + info +'}';
     }
 }

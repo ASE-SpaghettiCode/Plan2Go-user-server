@@ -62,4 +62,10 @@ public class UserController {
         return user;
     }
 
+    @PutMapping("/users/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
+    public void editUser(@PathVariable("userId") String userId, @RequestBody User user){
+        userService.editUser(user);
+    }
 }

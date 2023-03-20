@@ -83,4 +83,26 @@ public class UserService {
         user.setToken("");
     }
 
+    //edit profile
+    public void editUser(User userInput){
+        if(!userRepository.existsById(userInput.getUserId())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user does not exists");
+        }
+
+        User editeduser=getUserById(userInput.getUserId());
+
+        if(userInput.getUsername().equals(editeduser.getUsername())){
+            editeduser.setInfo(userInput.getInfo());
+            editeduser.setPassword(userInput.getPassword());
+        }else if(userRepository.findByUsername(userInput.getUsername())==null){
+            editeduser.setUsername(userInput.getUsername());
+            editeduser.setInfo(userInput.getInfo());
+            editeduser.setPassword(userInput.getPassword());
+        }else{
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"username exists");
+        }
+
+        userRepository.save(editeduser);
+
+    }
 }
