@@ -13,6 +13,7 @@ public class User{
     public String password;
     public String token;
     public String info;
+    public String imageLink;
 
     public User(String username, String password, String token){
         this.password=password;
@@ -58,6 +59,14 @@ public class User{
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public String getImageLink() {
+        return imageLink;
     }
 
     @Override
