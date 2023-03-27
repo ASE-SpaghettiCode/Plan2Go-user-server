@@ -18,10 +18,10 @@ public class UserServerApplication implements CommandLineRunner {
 	@Autowired
 	private UserRepository repository;
 
-	@Bean
-	public RestTemplate getRestTemplate(){
-		return new RestTemplate();
-	}
+//	@Bean //this bean is for sending Restful request to travelNoteServer
+//	public RestTemplate getRestTemplate(){
+//		return new RestTemplate();
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserServerApplication.class, args);

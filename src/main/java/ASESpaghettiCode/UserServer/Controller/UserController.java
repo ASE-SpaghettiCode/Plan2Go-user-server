@@ -73,10 +73,11 @@ public class UserController {
         userService.editUser(user);
     }
 
-//    @Value("${NoteServerLocation}")
+//    // this template is used for sending restful request to travelNoteServer
+//    @Value("${NoteServerLocation}")// can be set in resources/application.properties or Dockerfile or Dockercompose.yml
 //    private String NoteServerLocation;
 //
-//    @Autowired
+//    @Autowired //This Bean is injected in UserServerApplication
 //    private RestTemplate restTemplate;
 //
 //    @RequestMapping("/{userId}/notes")
