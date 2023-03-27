@@ -9,8 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.UUID;
+
 
 @SpringBootApplication
 <span class="fc" id="L16">public class UserServerApplication implements CommandLineRunner {</span>
@@ -18,27 +18,32 @@ import java.util.UUID;
 	@Autowired
 	private UserRepository repository;
 
+//	@Bean //this bean is for sending Restful request to travelNoteServer
+//	public RestTemplate getRestTemplate(){
+//		return new RestTemplate();
+//	}
+
 	@Bean
 	public RestTemplate getRestTemplate(){
-<span class="fc" id="L23">		return new RestTemplate();</span>
+<span class="fc" id="L28">		return new RestTemplate();</span>
 	}
 
 	public static void main(String[] args) {
-<span class="nc" id="L27">		SpringApplication.run(UserServerApplication.class, args);</span>
-<span class="nc" id="L28">	}</span>
+<span class="nc" id="L32">		SpringApplication.run(UserServerApplication.class, args);</span>
+<span class="nc" id="L33">	}</span>
 
 	@Override
 	public void run(String...args) throws Exception{
-<span class="fc" id="L32">		repository.deleteAll();</span>
-<span class="fc" id="L33">		repository.save(new User(&quot;Alice&quot;,&quot;123456&quot;,&quot;&quot;));</span>
-<span class="fc" id="L34">		repository.save(new User(&quot;Jessica&quot;,&quot;123456&quot;,&quot;&quot;));</span>
+<span class="fc" id="L37">		repository.deleteAll();</span>
+<span class="fc" id="L38">		repository.save(new User(&quot;Alice&quot;,&quot;123456&quot;,&quot;&quot;));</span>
+<span class="fc" id="L39">		repository.save(new User(&quot;Jessica&quot;,&quot;123456&quot;,&quot;&quot;));</span>
 
-<span class="fc" id="L36">		System.out.println(&quot;-------------------------------&quot;);</span>
-<span class="fc bfc" id="L37" title="All 2 branches covered.">		for (User user : repository.findAll()) {</span>
-<span class="fc" id="L38">			System.out.println(user);</span>
-<span class="fc" id="L39">		}</span>
-<span class="fc" id="L40">		System.out.println();</span>
-<span class="fc" id="L41">	}</span>
+<span class="fc" id="L41">		System.out.println(&quot;-------------------------------&quot;);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		for (User user : repository.findAll()) {</span>
+<span class="fc" id="L43">			System.out.println(user);</span>
+<span class="fc" id="L44">		}</span>
+<span class="fc" id="L45">		System.out.println();</span>
+<span class="fc" id="L46">	}</span>
 
 
 }

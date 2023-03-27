@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Controller;
 
+import ASESpaghettiCode.UserServer.Model.Note;
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 import ASESpaghettiCode.UserServer.Service.UserService;
@@ -8,10 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
 
 
 @RestController
@@ -19,16 +22,16 @@ import java.util.stream.Collectors;
 public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
-<span class="fc" id="L22">    UserController(UserRepository userRepository, UserService userService){</span>
-<span class="fc" id="L23">        this.userRepository = userRepository;</span>
-<span class="fc" id="L24">        this.userService=userService;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L25">    UserController(UserRepository userRepository, UserService userService){</span>
+<span class="fc" id="L26">        this.userRepository = userRepository;</span>
+<span class="fc" id="L27">        this.userService=userService;</span>
+<span class="fc" id="L28">    }</span>
     @GetMapping(&quot;/users&quot;)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List&lt;User&gt; getAllUsers(){
-<span class="nc" id="L30">        List&lt;User&gt; users = userService.getUsers();</span>
-<span class="nc" id="L31">        return users;</span>
+<span class="nc" id="L33">        List&lt;User&gt; users = userService.getUsers();</span>
+<span class="nc" id="L34">        return users;</span>
     }
 
     //register
@@ -36,8 +39,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public User createUser(@RequestBody User user){
-<span class="nc" id="L39">        User createdUser = userService.createUser(user);</span>
-<span class="nc" id="L40">        return createdUser;</span>
+<span class="nc" id="L42">        User createdUser = userService.createUser(user);</span>
+<span class="nc" id="L43">        return createdUser;</span>
     }
 
     //login
@@ -45,8 +48,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public User loginUser(@RequestBody User user){
-<span class="nc" id="L48">        User loggedInUser=userService.loginUser(user);</span>
-<span class="nc" id="L49">        return loggedInUser;</span>
+<span class="nc" id="L51">        User loggedInUser=userService.loginUser(user);</span>
+<span class="nc" id="L52">        return loggedInUser;</span>
     }
 
     //logout
@@ -54,29 +57,30 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     public void logoutUser(@PathVariable String userId){
-<span class="nc" id="L57">        User user = userService.getUserById(userId);</span>
-<span class="nc" id="L58">        userService.logoutUser(user);</span>
-<span class="nc" id="L59">    }</span>
+<span class="nc" id="L60">        User user = userService.getUserById(userId);</span>
+<span class="nc" id="L61">        userService.logoutUser(user);</span>
+<span class="nc" id="L62">    }</span>
     //get user
     @GetMapping(&quot;/users/{userId}&quot;)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public User user (@PathVariable(&quot;userId&quot;) String userId) {
-<span class="nc" id="L65">        User user = userService.getUserById(userId);</span>
-<span class="nc" id="L66">        return user;</span>
+<span class="nc" id="L68">        User user = userService.getUserById(userId);</span>
+<span class="nc" id="L69">        return user;</span>
     }
 
     @PutMapping(&quot;/users/{userId}&quot;)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     public void editUser(@PathVariable(&quot;userId&quot;) String userId, @RequestBody User user){
-<span class="nc" id="L73">        userService.editUser(user);</span>
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L76">        userService.editUser(user);</span>
+<span class="nc" id="L77">    }</span>
 
-//    @Value(&quot;${NoteServerLocation}&quot;)
+//    // this template is used for sending restful request to travelNoteServer
+//    @Value(&quot;${NoteServerLocation}&quot;)// can be set in resources/application.properties or Dockerfile or Dockercompose.yml
 //    private String NoteServerLocation;
 //
-//    @Autowired
+//    @Autowired //This Bean is injected in UserServerApplication
 //    private RestTemplate restTemplate;
 //
 //    @RequestMapping(&quot;/{userId}/notes&quot;)

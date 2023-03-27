@@ -2,21 +2,10 @@ package ASESpaghettiCode.UserServer.Service;
 
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
-<<<<<<< HEAD
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    public void save(User user){
-        userRepository.save(user);
-    }
-
-=======
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -122,5 +111,4 @@ public class UserService {
         userRepository.save(editeduser);
 
     }
->>>>>>> develop
 }

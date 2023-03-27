@@ -1,15 +1,6 @@
 package ASESpaghettiCode.UserServer.Repository;
 
-<<<<<<< HEAD
 
-import ASESpaghettiCode.UserServer.Model.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface UserRepository extends MongoRepository<User,String> {
-
-=======
 import ASESpaghettiCode.UserServer.Model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -21,5 +12,5 @@ public interface UserRepository extends MongoRepository<User, String> {
     public List<User> findAll();
     public User findByUserId(String userId);
     public User findByUsername(String username);
->>>>>>> develop
+
 }
