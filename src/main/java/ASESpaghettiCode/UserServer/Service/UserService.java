@@ -97,12 +97,12 @@ public class UserService {
         User editeduser=getUserById(userInput.getUserId());
 
         if(userInput.getUsername().equals(editeduser.getUsername())){
-            editeduser.setInfo(userInput.getInfo());
+            editeduser.setIntro(userInput.getIntro());
             editeduser.setPassword(userInput.getPassword());
             editeduser.setImageLink(userInput.getImageLink());
         }else if(userRepository.findByUsername(userInput.getUsername())==null){
             editeduser.setUsername(userInput.getUsername());
-            editeduser.setInfo(userInput.getInfo());
+            editeduser.setIntro(userInput.getIntro());
             editeduser.setPassword(userInput.getPassword());
             editeduser.setImageLink(userInput.getImageLink());
         }else{

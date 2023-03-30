@@ -14,7 +14,7 @@ public class User{
     public String username;
     public String password;
     public String token;
-    public String info;
+    public String intro;
     public String imageLink;
     public List<String> followers;
     public List<String> followings;
@@ -57,12 +57,12 @@ public class User{
         this.token = token;
     }
 
-    public String getInfo(){
-        return info;
+    public String getIntro(){
+        return intro;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public void setImageLink(String imageLink) {
@@ -111,6 +111,6 @@ public class User{
                 "id='" + userId + '\'' +
                 ", username='" + username + '\'' +
                 ", password=" + password+'\''+
-                ", info=" + info +'}';
+                ", intro=" + intro +'}';
     }
 }
