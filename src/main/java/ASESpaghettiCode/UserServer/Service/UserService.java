@@ -136,4 +136,20 @@ public class UserService {
         userRepository.save(user2.get());
         userRepository.save(user1.get());
     }
+
+    public List<String> getFollowersById(String userId) {
+        Optional<User> targetUser = userRepository.findById(userId);
+        if (targetUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
+        }
+        return targetUser.get().getFollowers();
+    }
+
+    public List<String> getFollowingsById(String userId) {
+        Optional<User> targetUser = userRepository.findById(userId);
+        if (targetUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
+        }
+        return targetUser.get().getFollowings();
+    }
 }

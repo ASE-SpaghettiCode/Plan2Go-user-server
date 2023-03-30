@@ -84,4 +84,16 @@ public class UserController {
     public void userUnfollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
         userService.userUnfollowsUser(userId1, userId2);
     }
+
+    @GetMapping("users/{userId}/followers")
+    @ResponseStatus(HttpStatus.OK)
+    public List<String> getFollwers(@PathVariable String userId) {
+        return userService.getFollowersById(userId);
+    }
+
+    @GetMapping("users/{userId}/followings")
+    @ResponseStatus(HttpStatus.OK)
+    public List<String> getFollwings(@PathVariable String userId) {
+        return userService.getFollowingsById(userId);
+    }
 }
