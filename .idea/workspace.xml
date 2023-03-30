@@ -5,16 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3a89ffa-809b-4f09-aca7-7e3222246745" name="Changes" comment="Closes #37; Add profile image">
-      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserService.class.uniqueId1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Plan2Go-user-server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/UserServer.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/UserServerApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/user.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/userController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03_[Changes]/users.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_18_0_03__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Controller/userController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Controller/userController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/user.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/user.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserController.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserService.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" afterDir="false" />
     </list>
@@ -51,6 +68,9 @@
       <facet id="UserServer.main/invalid/Web" />
     </ignored-facets>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -60,49 +80,22 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "follow__and__unfollow",
+    "last_opened_file_path": "/Users/duanranjing/GitHub/ASE/Plan2Go-user-server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "fa3597544b1100569e3b2b12ea76501c",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager" selected="Application.UserServerApplication">
-    <configuration name="UserServerApplication" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="ASESpaghettiCode.UserServer.UserServerApplication" />
-      <module name="UserServer.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ASESpaghettiCode.UserServer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Plan2Go-user-server" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Plan2Go-user-server" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Plan2Go-user-server" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,13 +116,6 @@
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
-    </configuration>
-    <configuration name="UserServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="UserServer.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ASESpaghettiCode.UserServer.UserServerApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="Plan2Go-user-server" />
@@ -174,8 +160,44 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="UserServerApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="ASESpaghettiCode.UserServer.UserServerApplication" />
+      <module name="UserServer.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ASESpaghettiCode.UserServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Plan2Go-user-server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Plan2Go-user-server" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="UserServer.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ASESpaghettiCode.UserServer.UserServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.UserServerApplication" />
+      <item itemvalue="Spring Boot.UserServerApplication" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -187,6 +209,9 @@
       <option name="presentableId" value="Default" />
       <updated>1679137558268</updated>
       <workItem from="1679137560174" duration="2332000" />
+      <workItem from="1679833760820" duration="117000" />
+      <workItem from="1679834456128" duration="170000" />
+      <workItem from="1680185613540" duration="949000" />
     </task>
     <task id="LOCAL-00001" summary="closes #27, closes #28; Finished User Database.">
       <created>1679220081874</created>
@@ -254,7 +279,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="closes #27, closes #28; Finished User Database." />

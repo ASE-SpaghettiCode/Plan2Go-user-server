@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,7 +30,11 @@ public class UserService {
     // register
     public User createUser(User newUser) {
         newUser.setToken(UUID.randomUUID().toString());
+        List<String> followers = new ArrayList<>();
+        List<String> followings = new ArrayList<>();
         checkIfUserExists(newUser);
+        newUser.setFollowers(followers);
+        newUser.setFollowings(followings);
         newUser = userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
@@ -106,5 +111,29 @@ public class UserService {
 
         userRepository.save(editeduser);
 
+    }
+
+    public void userFollowsUser(String userId1, String userId2) {
+        Optional<User> user1 = userRepository.findById(userId1);
+        Optional<User> user2 = userRepository.findById(userId2);
+        if (user1.isEmpty() || user2.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
+        }
+        user2.get().addFollowers(userId1);
+        user1.get().addFollowings(userId2);
+        userRepository.save(user2.get());
+        userRepository.save(user1.get());
+    }
+
+    public void userUnfollowsUser(String userId1, String userId2) {
+        Optional<User> user1 = userRepository.findById(userId1);
+        Optional<User> user2 = userRepository.findById(userId2);
+        if (user1.isEmpty() || user2.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
+        }
+        user2.get().removeFollowers(userId1);
+        user1.get().removeFollowings(userId2);
+        userRepository.save(user2.get());
+        userRepository.save(user1.get());
     }
 }

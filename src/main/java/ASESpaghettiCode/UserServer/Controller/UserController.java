@@ -68,4 +68,16 @@ public class UserController {
     public void editUser(@PathVariable("userId") String userId, @RequestBody User user){
         userService.editUser(user);
     }
+
+    @PostMapping("users/{userId1}/follows/users/{userId2}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void userFollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
+        userService.userFollowsUser(userId1, userId2);
+    }
+
+    @DeleteMapping("users/{userId1}/follows/users/{userId2}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void userUnfollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
+        userService.userUnfollowsUser(userId1, userId2);
+    }
 }
