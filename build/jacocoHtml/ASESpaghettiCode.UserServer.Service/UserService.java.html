@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Service;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Service;
 
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,97 +16,141 @@ import org.slf4j.Logger;
 
 @Service
 public class UserService {
-<span class="fc" id="L18">    private final Logger log = LoggerFactory.getLogger(UserService.class);</span>
+<span class="fc" id="L19">    private final Logger log = LoggerFactory.getLogger(UserService.class);</span>
     private final UserRepository userRepository;
 
     @Autowired
-<span class="fc" id="L22">    public UserService(UserRepository userRepository) {</span>
-<span class="fc" id="L23">        this.userRepository = userRepository;</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L23">    public UserService(UserRepository userRepository) {</span>
+<span class="fc" id="L24">        this.userRepository = userRepository;</span>
+<span class="fc" id="L25">    }</span>
 
     public List&lt;User&gt; getUsers(){
-<span class="nc" id="L27">        return this.userRepository.findAll();</span>
+<span class="nc" id="L28">        return this.userRepository.findAll();</span>
     }
     // register
     public User createUser(User newUser) {
-<span class="nc" id="L31">        newUser.setToken(UUID.randomUUID().toString());</span>
-<span class="nc" id="L32">        checkIfUserExists(newUser);</span>
-<span class="nc" id="L33">        newUser = userRepository.save(newUser);</span>
-<span class="nc" id="L34">        log.debug(&quot;Created Information for User: {}&quot;, newUser);</span>
-<span class="nc" id="L35">        return newUser;</span>
+<span class="nc" id="L32">        newUser.setToken(UUID.randomUUID().toString());</span>
+<span class="nc" id="L33">        List&lt;String&gt; followers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">        List&lt;String&gt; followings = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L35">        checkIfUserExists(newUser);</span>
+<span class="nc" id="L36">        newUser.setFollowers(followers);</span>
+<span class="nc" id="L37">        newUser.setFollowings(followings);</span>
+<span class="nc" id="L38">        newUser = userRepository.save(newUser);</span>
+<span class="nc" id="L39">        log.debug(&quot;Created Information for User: {}&quot;, newUser);</span>
+<span class="nc" id="L40">        return newUser;</span>
     }
 
     private void checkIfUserExists(User userToBeCreated) {
-<span class="nc" id="L39">        User userByUsername = userRepository.findByUsername(userToBeCreated.getUsername());</span>
+<span class="nc" id="L44">        User userByUsername = userRepository.findByUsername(userToBeCreated.getUsername());</span>
 
-<span class="nc" id="L41">        String baseErrorMessage = &quot;The %s provided %s not unique. Therefore, the user could not be created!&quot;;</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (userByUsername != null) {</span>
-<span class="nc" id="L43">            throw new ResponseStatusException(HttpStatus.CONFLICT,</span>
-<span class="nc" id="L44">                    String.format(baseErrorMessage, &quot;username&quot;, &quot;is&quot;));</span>
+<span class="nc" id="L46">        String baseErrorMessage = &quot;The %s provided %s not unique. Therefore, the user could not be created!&quot;;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (userByUsername != null) {</span>
+<span class="nc" id="L48">            throw new ResponseStatusException(HttpStatus.CONFLICT,</span>
+<span class="nc" id="L49">                    String.format(baseErrorMessage, &quot;username&quot;, &quot;is&quot;));</span>
         }
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L51">    }</span>
 
     // login
     public User loginUser(User user) {
-<span class="nc" id="L50">        user = checkIfPasswordWrong(user);</span>
-<span class="nc" id="L51">        user.setToken(UUID.randomUUID().toString());</span>
+<span class="nc" id="L55">        user = checkIfPasswordWrong(user);</span>
+<span class="nc" id="L56">        user.setToken(UUID.randomUUID().toString());</span>
 
-<span class="nc" id="L53">        return user;</span>
+<span class="nc" id="L58">        return user;</span>
     }
 
     private User checkIfPasswordWrong(User userToBeLoggedIn) {
 
-<span class="nc" id="L58">        User userByUsername = userRepository.findByUsername(userToBeLoggedIn.getUsername());</span>
+<span class="nc" id="L63">        User userByUsername = userRepository.findByUsername(userToBeLoggedIn.getUsername());</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (userByUsername == null) {</span>
-<span class="nc" id="L61">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Username may not exist!!&quot;);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (userByUsername == null) {</span>
+<span class="nc" id="L66">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Username may not exist!!&quot;);</span>
         }
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        else if (!userByUsername.getPassword().equals(userToBeLoggedIn.getPassword())) {</span>
-<span class="nc" id="L64">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Password Incorrect!&quot;);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        else if (!userByUsername.getPassword().equals(userToBeLoggedIn.getPassword())) {</span>
+<span class="nc" id="L69">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Password Incorrect!&quot;);</span>
         }
         else {
-<span class="nc" id="L67">            return userByUsername;</span>
+<span class="nc" id="L72">            return userByUsername;</span>
         }
     }
 
     public User getUserById(String userId) {
-<span class="nc" id="L72">        Optional&lt;User&gt; checkUser = Optional.ofNullable(userRepository.findByUserId(userId));</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (checkUser.isPresent()) {</span>
-<span class="nc" id="L74">            return checkUser.get();</span>
+<span class="nc" id="L77">        Optional&lt;User&gt; checkUser = Optional.ofNullable(userRepository.findByUserId(userId));</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (checkUser.isPresent()) {</span>
+<span class="nc" id="L79">            return checkUser.get();</span>
         }
         else {
-<span class="nc" id="L77">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User was not found!&quot;);</span>
+<span class="nc" id="L82">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User was not found!&quot;);</span>
         }
     }
 
     // logout
     public void logoutUser(User user) {
-<span class="nc" id="L83">        user.setToken(&quot;&quot;);</span>
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L88">        user.setToken(&quot;&quot;);</span>
+<span class="nc" id="L89">    }</span>
 
     //edit profile
     public void editUser(User userInput){
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if(!userRepository.existsById(userInput.getUserId())){</span>
-<span class="nc" id="L89">            throw new ResponseStatusException(HttpStatus.NOT_FOUND,&quot;user does not exists&quot;);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if(!userRepository.existsById(userInput.getUserId())){</span>
+<span class="nc" id="L94">            throw new ResponseStatusException(HttpStatus.NOT_FOUND,&quot;user does not exists&quot;);</span>
         }
 
-<span class="nc" id="L92">        User editeduser=getUserById(userInput.getUserId());</span>
+<span class="nc" id="L97">        User editeduser=getUserById(userInput.getUserId());</span>
 
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(userInput.getUsername().equals(editeduser.getUsername())){</span>
-<span class="nc" id="L95">            editeduser.setIntro(userInput.getIntro());</span>
-<span class="nc" id="L96">            editeduser.setPassword(userInput.getPassword());</span>
-<span class="nc" id="L97">            editeduser.setImageLink(userInput.getImageLink());</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        }else if(userRepository.findByUsername(userInput.getUsername())==null){</span>
-<span class="nc" id="L99">            editeduser.setUsername(userInput.getUsername());</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if(userInput.getUsername().equals(editeduser.getUsername())){</span>
 <span class="nc" id="L100">            editeduser.setIntro(userInput.getIntro());</span>
 <span class="nc" id="L101">            editeduser.setPassword(userInput.getPassword());</span>
 <span class="nc" id="L102">            editeduser.setImageLink(userInput.getImageLink());</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        }else if(userRepository.findByUsername(userInput.getUsername())==null){</span>
+<span class="nc" id="L104">            editeduser.setUsername(userInput.getUsername());</span>
+<span class="nc" id="L105">            editeduser.setIntro(userInput.getIntro());</span>
+<span class="nc" id="L106">            editeduser.setPassword(userInput.getPassword());</span>
+<span class="nc" id="L107">            editeduser.setImageLink(userInput.getImageLink());</span>
         }else{
-<span class="nc" id="L104">            throw new ResponseStatusException(HttpStatus.CONFLICT,&quot;username exists&quot;);</span>
+<span class="nc" id="L109">            throw new ResponseStatusException(HttpStatus.CONFLICT,&quot;username exists&quot;);</span>
         }
 
-<span class="nc" id="L107">        userRepository.save(editeduser);</span>
+<span class="nc" id="L112">        userRepository.save(editeduser);</span>
 
-<span class="nc" id="L109">    }</span>
+<span class="nc" id="L114">    }</span>
+
+    public void userFollowsUser(String userId1, String userId2) {
+<span class="nc" id="L117">        Optional&lt;User&gt; user1 = userRepository.findById(userId1);</span>
+<span class="nc" id="L118">        Optional&lt;User&gt; user2 = userRepository.findById(userId2);</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        if (user1.isEmpty() || user2.isEmpty()) {</span>
+<span class="nc" id="L120">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="nc" id="L122">        user2.get().addFollowers(userId1);</span>
+<span class="nc" id="L123">        user1.get().addFollowings(userId2);</span>
+<span class="nc" id="L124">        userRepository.save(user2.get());</span>
+<span class="nc" id="L125">        userRepository.save(user1.get());</span>
+<span class="nc" id="L126">    }</span>
+
+    public void userUnfollowsUser(String userId1, String userId2) {
+<span class="nc" id="L129">        Optional&lt;User&gt; user1 = userRepository.findById(userId1);</span>
+<span class="nc" id="L130">        Optional&lt;User&gt; user2 = userRepository.findById(userId2);</span>
+<span class="nc bnc" id="L131" title="All 4 branches missed.">        if (user1.isEmpty() || user2.isEmpty()) {</span>
+<span class="nc" id="L132">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="nc" id="L134">        user2.get().removeFollowers(userId1);</span>
+<span class="nc" id="L135">        user1.get().removeFollowings(userId2);</span>
+<span class="nc" id="L136">        userRepository.save(user2.get());</span>
+<span class="nc" id="L137">        userRepository.save(user1.get());</span>
+<span class="nc" id="L138">    }</span>
+
+    public List&lt;String&gt; getFollowersById(String userId) {
+<span class="nc" id="L141">        Optional&lt;User&gt; targetUser = userRepository.findById(userId);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (targetUser.isEmpty()) {</span>
+<span class="nc" id="L143">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="nc" id="L145">        return targetUser.get().getFollowers();</span>
+    }
+
+    public List&lt;String&gt; getFollowingsById(String userId) {
+<span class="nc" id="L149">        Optional&lt;User&gt; targetUser = userRepository.findById(userId);</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (targetUser.isEmpty()) {</span>
+<span class="nc" id="L151">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="nc" id="L153">        return targetUser.get().getFollowings();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

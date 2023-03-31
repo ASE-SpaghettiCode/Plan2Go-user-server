@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Controller;
 
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
@@ -73,27 +73,28 @@ public class UserController {
 <span class="nc" id="L73">        userService.editUser(user);</span>
 <span class="nc" id="L74">    }</span>
 
-//    @Value(&quot;${NoteServerLocation}&quot;)
-//    private String NoteServerLocation;
-//
-//    @Autowired
-//    private RestTemplate restTemplate;
-//
-//    @RequestMapping(&quot;/{userId}/notes&quot;)
-//    @ResponseStatus(HttpStatus.OK)
-//    public List&lt;Note&gt; getUserNotes(@PathVariable(&quot;userId&quot;) String userId) {
-//
-//        // get users info (including basic info, list of id of published notes, list of id of liked notes) with userId
-//        List&lt;Integer&gt; publisedNotesIDs = Arrays.asList(101, 102, 103);//only hardcoded for the example
-//
-//        // For each noteId, call the Note Server(by default localhost:8082) and get details
-//        List&lt;Note&gt; publishedList;
-//        publishedList = publisedNotesIDs.stream().map(publisedNotesID-&gt;{
-//            Note note = restTemplate.getForObject(NoteServerLocation + publisedNotesID,Note.class);
-//            return note;
-//        }).collect((Collectors.toList()));
-//
-//        return  publishedList;
-//    }
+    @PostMapping(&quot;users/{userId1}/follows/users/{userId2}&quot;)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void userFollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
+<span class="nc" id="L79">        userService.userFollowsUser(userId1, userId2);</span>
+<span class="nc" id="L80">    }</span>
+
+    @DeleteMapping(&quot;users/{userId1}/follows/users/{userId2}&quot;)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void userUnfollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
+<span class="nc" id="L85">        userService.userUnfollowsUser(userId1, userId2);</span>
+<span class="nc" id="L86">    }</span>
+
+    @GetMapping(&quot;users/{userId}/followers&quot;)
+    @ResponseStatus(HttpStatus.OK)
+    public List&lt;String&gt; getFollwers(@PathVariable String userId) {
+<span class="nc" id="L91">        return userService.getFollowersById(userId);</span>
+    }
+
+    @GetMapping(&quot;users/{userId}/followings&quot;)
+    @ResponseStatus(HttpStatus.OK)
+    public List&lt;String&gt; getFollwings(@PathVariable String userId) {
+<span class="nc" id="L97">        return userService.getFollowingsById(userId);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
