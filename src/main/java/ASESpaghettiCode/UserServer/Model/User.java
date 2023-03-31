@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document
 public class User{
@@ -14,6 +16,8 @@ public class User{
     public String token;
     public String intro;
     public String imageLink;
+    public List<String> followers;
+    public List<String> followings;
 
     public User(String username, String password, String token){
         this.password=password;
@@ -67,6 +71,38 @@ public class User{
 
     public String getImageLink() {
         return imageLink;
+    }
+
+    public List<String> getFollowers() {
+        return this.followers;
+    }
+
+    public void setFollowers(List<String> initialList) {
+        this.followers = initialList;
+    }
+
+    public void addFollowers(String userId) {
+        this.followers.add(userId);
+    }
+
+    public void removeFollowers(String userId) {
+        this.followers.remove(userId);
+    }
+
+    public List<String> getFollowings() {
+        return this.followings;
+    }
+
+    public void setFollowings(List<String> initialList) {
+        this.followings = initialList;
+    }
+
+    public void addFollowings(String userId) {
+        this.followings.add(userId);
+    }
+
+    public void removeFollowings(String userId) {
+        this.followings.remove(userId);
     }
 
     @Override
