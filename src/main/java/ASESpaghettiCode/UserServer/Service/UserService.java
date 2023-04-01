@@ -3,29 +3,33 @@ package ASESpaghettiCode.UserServer.Service;
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 
+import com.mongodb.client.*;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+
 import org.slf4j.Logger;
 
 @Service
 public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
+    private MongoClient mongoClient;
+    private MongoCollection<Document> notesCollection;
+
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+        //connect to the mongodb running on the same machine as your java application
+        MongoClient mongoClient=MongoClients.create();
+        MongoDatabase database=mongoClient.getDatabase("spaghetticode");
+        notesCollection = database.getCollection("note");
     }
 
     public List<User> getUsers(){
@@ -155,5 +159,17 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
         }
         return targetUser.get().getFollowings();
+    }
+
+    public List<String> getLikedNotes(String userId){
+        List<String> likedNotes = new ArrayList<>();
+        Document query =new Document("likedUsers",userId);
+
+        FindIterable<Document> results = notesCollection.find(query);
+        for(Document doc : results){
+            String noteId = doc.getObjectId("_id").toString();
+            likedNotes.add(noteId);
+        }
+        return likedNotes;
     }
 }

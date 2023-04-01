@@ -99,4 +99,13 @@ public class UserController {
     public List<String> getFollwings(@PathVariable String userId) {
         return userService.getFollowingsById(userId);
     }
+
+    //return like list
+    @GetMapping("users/{userId}/likes")
+    @ResponseStatus(HttpStatus.OK)
+    public List<String> getLikedList(@PathVariable String userId){
+        return userService.getLikedNotes(userId);
+    }
+
 }
+

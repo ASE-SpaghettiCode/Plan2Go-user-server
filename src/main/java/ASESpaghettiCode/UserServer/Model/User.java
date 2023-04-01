@@ -2,12 +2,13 @@ package ASESpaghettiCode.UserServer.Model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Data
-@Document
+@Document(collection = "user")
 public class User{
     @Id
     public String userId;
@@ -18,6 +19,7 @@ public class User{
     public String imageLink;
     public List<String> followers;
     public List<String> followings;
+    public List<String> likedlist;
 
     public User(String username, String password, String token){
         this.password=password;
@@ -103,6 +105,14 @@ public class User{
 
     public void removeFollowings(String userId) {
         this.followings.remove(userId);
+    }
+
+    public List<String> getLikedlist() {
+        return likedlist;
+    }
+
+    public void setLikedlist(List<String> likedlist) {
+        this.likedlist = likedlist;
     }
 
     @Override
