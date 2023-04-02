@@ -127,8 +127,10 @@ public class UserService {
         if (user1.isEmpty() || user2.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
         }
-        user2.get().addFollowers(userId1);
-        user1.get().addFollowings(userId2);
+        if (!user2.get().getFollowers().contains(userId1) && !user1.get().getFollowings().contains(userId2)) {
+            user2.get().addFollowers(userId1);
+            user1.get().addFollowings(userId2);
+        }
         userRepository.save(user2.get());
         userRepository.save(user1.get());
     }
@@ -139,8 +141,10 @@ public class UserService {
         if (user1.isEmpty() || user2.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
         }
-        user2.get().removeFollowers(userId1);
-        user1.get().removeFollowings(userId2);
+        if (user2.get().getFollowers().contains(userId1) && user1.get().getFollowings().contains(userId2)) {
+            user2.get().removeFollowers(userId1);
+            user1.get().removeFollowings(userId2);
+        }
         userRepository.save(user2.get());
         userRepository.save(user1.get());
     }
