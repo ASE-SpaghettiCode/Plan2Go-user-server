@@ -106,12 +106,12 @@ public class UserService {
 
         if(userInput.getUsername().equals(editeduser.getUsername())){
             editeduser.setIntro(userInput.getIntro());
-            editeduser.setPassword(userInput.getPassword());
+//            editeduser.setPassword(userInput.getPassword());
             editeduser.setImageLink(userInput.getImageLink());
         }else if(userRepository.findByUsername(userInput.getUsername())==null){
             editeduser.setUsername(userInput.getUsername());
             editeduser.setIntro(userInput.getIntro());
-            editeduser.setPassword(userInput.getPassword());
+//            editeduser.setPassword(userInput.getPassword());
             editeduser.setImageLink(userInput.getImageLink());
         }else{
             throw new ResponseStatusException(HttpStatus.CONFLICT,"username exists");
@@ -119,6 +119,17 @@ public class UserService {
 
         userRepository.save(editeduser);
 
+    }
+
+    public void editUserPassword(User userInput){
+        if(!userRepository.existsById(userInput.getUserId())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user does not exists");
+        }
+
+        User editeduser=getUserById(userInput.getUserId());
+        editeduser.setPassword(userInput.getPassword());
+
+        userRepository.save(editeduser);
     }
 
     public void userFollowsUser(String userId1, String userId2) {

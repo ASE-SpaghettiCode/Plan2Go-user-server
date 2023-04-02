@@ -76,6 +76,13 @@ public class UserController {
         userService.editUser(user);
     }
 
+    @PutMapping("/users/password/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
+    public void editUserPassword(@PathVariable("userId") String userId, @RequestBody User user){
+        userService.editUserPassword(user);
+    }
+
     @PostMapping("users/{userId1}/follows/users/{userId2}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void userFollowsUser(@PathVariable String userId1, @PathVariable String userId2) {
