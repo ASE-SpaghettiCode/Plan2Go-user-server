@@ -132,7 +132,7 @@ public class UserService {
         userRepository.save(editeduser);
     }
 
-    public void userFollowsUser(String userId1, String userId2) {
+    public boolean userFollowsUser(String userId1, String userId2) {
         Optional<User> user1 = userRepository.findById(userId1);
         Optional<User> user2 = userRepository.findById(userId2);
         if (user1.isEmpty() || user2.isEmpty()) {
@@ -144,9 +144,10 @@ public class UserService {
         }
         userRepository.save(user2.get());
         userRepository.save(user1.get());
+        return true;
     }
 
-    public void userUnfollowsUser(String userId1, String userId2) {
+    public boolean userUnfollowsUser(String userId1, String userId2) {
         Optional<User> user1 = userRepository.findById(userId1);
         Optional<User> user2 = userRepository.findById(userId2);
         if (user1.isEmpty() || user2.isEmpty()) {
@@ -158,6 +159,16 @@ public class UserService {
         }
         userRepository.save(user2.get());
         userRepository.save(user1.get());
+        return true;
+    }
+
+    public boolean user1FollowUser2(String userId1, String userId2) {
+        Optional<User> user1 = userRepository.findById(userId1);
+        Optional<User> user2 = userRepository.findById(userId2);
+        if (user1.isEmpty() || user2.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
+        }
+        return user1.get().getFollowings().contains(userId2);
     }
 
     public List<String> getFollowersById(String userId) {
