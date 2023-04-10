@@ -37,12 +37,14 @@ public class UserService {
     }
     // register
     public User createUser(User newUser) {
+        String defaultImage="https://res.cloudinary.com/drlkip0yc/image/upload/v1679279539/fake-profile-photo_qess5v.jpg";
         newUser.setToken(UUID.randomUUID().toString());
         List<String> followers = new ArrayList<>();
         List<String> followings = new ArrayList<>();
         checkIfUserExists(newUser);
         newUser.setFollowers(followers);
         newUser.setFollowings(followings);
+        newUser.setImageLink(defaultImage);
         newUser = userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
