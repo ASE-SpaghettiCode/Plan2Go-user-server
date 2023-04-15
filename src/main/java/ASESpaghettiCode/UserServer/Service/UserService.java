@@ -173,20 +173,30 @@ public class UserService {
         return user1.get().getFollowings().contains(userId2);
     }
 
-    public List<String> getFollowersById(String userId) {
+    public List<User> getFollowersById(String userId) {
         Optional<User> targetUser = userRepository.findById(userId);
         if (targetUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
         }
-        return targetUser.get().getFollowers();
+        List<User> result = new ArrayList<>();
+        for (String id : targetUser.get().getFollowers()) {
+            User follower = userRepository.findByUserId(id);
+            result.add(follower);
+        }
+        return result;
     }
 
-    public List<String> getFollowingsById(String userId) {
+    public List<User> getFollowingsById(String userId) {
         Optional<User> targetUser = userRepository.findById(userId);
         if (targetUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not found!");
         }
-        return targetUser.get().getFollowings();
+        List<User> result = new ArrayList<>();
+        for (String id : targetUser.get().getFollowings()) {
+            User follower = userRepository.findByUserId(id);
+            result.add(follower);
+        }
+        return result;
     }
 
     public List<String> getLikedNotes(String userId){
