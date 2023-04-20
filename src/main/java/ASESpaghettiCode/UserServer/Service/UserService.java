@@ -27,17 +27,18 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
         //connect to the mongodb running on the same machine as your java application
-        MongoClient mongoClient=MongoClients.create();
-        MongoDatabase database=mongoClient.getDatabase("spaghetticode");
+        MongoClient mongoClient = MongoClients.create();
+        MongoDatabase database = mongoClient.getDatabase("spaghetticode");
         notesCollection = database.getCollection("note");
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return this.userRepository.findAll();
     }
+
     // register
     public User createUser(User newUser) {
-        String defaultImage="https://res.cloudinary.com/drlkip0yc/image/upload/v1679279539/fake-profile-photo_qess5v.jpg";
+        String defaultImage = "https://res.cloudinary.com/drlkip0yc/image/upload/v1679279539/fake-profile-photo_qess5v.jpg";
         newUser.setToken(UUID.randomUUID().toString());
         List<String> followers = new ArrayList<>();
         List<String> followings = new ArrayList<>();
@@ -74,11 +75,9 @@ public class UserService {
 
         if (userByUsername == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username may not exist!!");
-        }
-        else if (!userByUsername.getPassword().equals(userToBeLoggedIn.getPassword())) {
+        } else if (!userByUsername.getPassword().equals(userToBeLoggedIn.getPassword())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Password Incorrect!");
-        }
-        else {
+        } else {
             return userByUsername;
         }
     }
@@ -87,8 +86,7 @@ public class UserService {
         Optional<User> checkUser = Optional.ofNullable(userRepository.findByUserId(userId));
         if (checkUser.isPresent()) {
             return checkUser.get();
-        }
-        else {
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User was not found!");
         }
     }
@@ -99,39 +97,37 @@ public class UserService {
     }
 
     //edit profile
-    public void editUser(User userInput){
-        if(!userRepository.existsById(userInput.getUserId())){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user does not exists");
+    public void editUser(User userInput) {
+        if (!userRepository.existsById(userInput.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user does not exists");
         }
 
-        User editeduser=getUserById(userInput.getUserId());
+        User editedUser = getUserById(userInput.getUserId());
 
-        if(userInput.getUsername().equals(editeduser.getUsername())){
-            editeduser.setIntro(userInput.getIntro());
-//            editeduser.setPassword(userInput.getPassword());
-            editeduser.setImageLink(userInput.getImageLink());
-        }else if(userRepository.findByUsername(userInput.getUsername())==null){
-            editeduser.setUsername(userInput.getUsername());
-            editeduser.setIntro(userInput.getIntro());
-//            editeduser.setPassword(userInput.getPassword());
-            editeduser.setImageLink(userInput.getImageLink());
-        }else{
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"username exists");
+        if (userInput.getUsername().equals(editedUser.getUsername())) {
+            editedUser.setIntro(userInput.getIntro());
+            editedUser.setImageLink(userInput.getImageLink());
+        } else if (userRepository.findByUsername(userInput.getUsername()) == null) {
+            editedUser.setUsername(userInput.getUsername());
+            editedUser.setIntro(userInput.getIntro());
+            editedUser.setImageLink(userInput.getImageLink());
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "username exists");
         }
 
-        userRepository.save(editeduser);
+        userRepository.save(editedUser);
 
     }
 
-    public void editUserPassword(User userInput){
-        if(!userRepository.existsById(userInput.getUserId())){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"user does not exists");
+    public void editUserPassword(User userInput) {
+        if (!userRepository.existsById(userInput.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user does not exists");
         }
 
-        User editeduser=getUserById(userInput.getUserId());
-        editeduser.setPassword(userInput.getPassword());
+        User editedUser = getUserById(userInput.getUserId());
+        editedUser.setPassword(userInput.getPassword());
 
-        userRepository.save(editeduser);
+        userRepository.save(editedUser);
     }
 
     public boolean userFollowsUser(String userId1, String userId2) {
@@ -199,12 +195,13 @@ public class UserService {
         return result;
     }
 
-    public List<String> getLikedNotes(String userId){
+    public List<String> getLikedNotes(String userId) {
         List<String> likedNotes = new ArrayList<>();
-        Document query =new Document("likedUsers",userId);
+        Document query = new Document("likedUsers", userId);
 
         FindIterable<Document> results = notesCollection.find(query);
-        for(Document doc : results){
+        for (Document doc : results) {
+            Document document = doc;
             String noteId = doc.getObjectId("_id").toString();
             likedNotes.add(noteId);
         }
