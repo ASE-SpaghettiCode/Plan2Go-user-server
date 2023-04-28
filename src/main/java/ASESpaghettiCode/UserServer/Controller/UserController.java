@@ -109,13 +109,13 @@ public class UserController {
 
     @GetMapping("users/{userId}/followers")
     @ResponseStatus(HttpStatus.OK)
-    public List<User> getFollwers(@PathVariable String userId) {
+    public List<User> getFollowers(@PathVariable String userId) {
         return userService.getFollowersById(userId);
     }
 
     @GetMapping("users/{userId}/followings")
     @ResponseStatus(HttpStatus.OK)
-    public List<User> getFollwings(@PathVariable String userId) {
+    public List<User> getFollowings(@PathVariable String userId) {
         return userService.getFollowingsById(userId);
     }
 
