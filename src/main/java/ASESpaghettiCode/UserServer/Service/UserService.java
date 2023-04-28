@@ -3,6 +3,8 @@ package ASESpaghettiCode.UserServer.Service;
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 
+import ASESpaghettiCode.UserServer.Websocket.NotificationModel.Notification;
+import ASESpaghettiCode.UserServer.Websocket.NotificationService;
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,13 @@ public class UserService {
     private final UserRepository userRepository;
     private MongoClient mongoClient;
     private MongoCollection<Document> notesCollection;
+    private NotificationService notificationService;
 
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,NotificationService notificationService) {
         this.userRepository = userRepository;
+        this.notificationService = notificationService;
         //connect to the mongodb running on the same machine as your java application
         MongoClient mongoClient=MongoClients.create();
         MongoDatabase database=mongoClient.getDatabase("spaghetticode");
@@ -146,6 +150,14 @@ public class UserService {
         }
         userRepository.save(user2.get());
         userRepository.save(user1.get());
+
+        //set notification to user1
+        Notification notification = new Notification();
+        notification.setActorId(userId1);
+        notification.setActorName(user1.get().username);
+        notification.setMethod("follow");
+        notification.setOwnerId(userId2);
+        notificationService.create(notification);
         return true;
     }
 
