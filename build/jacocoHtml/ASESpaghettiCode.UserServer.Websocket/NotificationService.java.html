@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotificationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Websocket</a> &gt; <span class="el_source">NotificationService.java</span></div><h1>NotificationService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Websocket;
+
+import ASESpaghettiCode.UserServer.Repository.UserRepository;
+import ASESpaghettiCode.UserServer.Websocket.NotificationModel.Notification;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpStatus;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class NotificationService {
+
+    private final SimpMessagingTemplate simpMessagingTemplate;
+    private final NotificationRepository notificationRepository;
+    private final UserRepository userRepository;
+
+
+    @Autowired
+<span class="fc" id="L27">    public NotificationService( NotificationRepository notificationRepository, SimpMessagingTemplate simpMessagingTemplate,UserRepository userRepository) {</span>
+<span class="fc" id="L28">        this.notificationRepository = notificationRepository;</span>
+<span class="fc" id="L29">        this.simpMessagingTemplate = simpMessagingTemplate;</span>
+<span class="fc" id="L30">        this.userRepository = userRepository;</span>
+<span class="fc" id="L31">    }</span>
+
+    public void create(Notification notification) {
+<span class="nc" id="L34">        notificationRepository.save(notification);</span>
+<span class="nc" id="L35">        simpMessagingTemplate.convertAndSend(&quot;/mailbox/&quot;+notification.getOwnerId()+&quot;/fetch&quot;, notification);</span>
+<span class="nc" id="L36">    }</span>
+
+
+    public List&lt;Notification&gt; getNotifications(String userId) {
+<span class="nc" id="L40">        Optional&lt;List&lt;Notification&gt;&gt; sortedList = Optional.ofNullable(notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;)));</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (sortedList.isEmpty()) {</span>
+<span class="nc" id="L42">            return new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L44">        sortedList.get().stream().forEach(notification-&gt;notification.setActorName(userRepository.findByUserId(notification.getActorId()).getUsername()));</span>
+<span class="nc" id="L45">        return sortedList.get();</span>
+    }
+
+    public void deleteNotificationsByOwnerId(String userId) {
+<span class="nc" id="L49">        List&lt;Notification&gt; notificationList = notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;));</span>
+<span class="nc" id="L50">        notificationRepository.deleteAll(notificationList);</span>
+<span class="nc" id="L51">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

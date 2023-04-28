@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Service;
+
+import ASESpaghettiCode.UserServer.Model.User;
+import ASESpaghettiCode.UserServer.Repository.UserRepository;
+
+import ASESpaghettiCode.UserServer.Websocket.NotificationModel.Notification;
+import ASESpaghettiCode.UserServer.Websocket.NotificationService;
+import com.mongodb.client.*;
+import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.*;
+
+import org.slf4j.Logger;
+
+@Service
+public class UserService {
+<span class="fc" id="L22">    private final Logger log = LoggerFactory.getLogger(UserService.class);</span>
+    private final UserRepository userRepository;
+    private MongoClient mongoClient;
+    private MongoCollection&lt;Document&gt; notesCollection;
+    private NotificationService notificationService;
+
+
+    @Autowired
+<span class="fc" id="L30">    public UserService(UserRepository userRepository,NotificationService notificationService) {</span>
+<span class="fc" id="L31">        this.userRepository = userRepository;</span>
+<span class="fc" id="L32">        this.notificationService = notificationService;</span>
+        //connect to the mongodb running on the same machine as your java application
+<span class="fc" id="L34">        MongoClient mongoClient = MongoClients.create();</span>
+<span class="fc" id="L35">        MongoDatabase database = mongoClient.getDatabase(&quot;spaghetticode&quot;);</span>
+<span class="fc" id="L36">        notesCollection = database.getCollection(&quot;note&quot;);</span>
+<span class="fc" id="L37">    }</span>
+
+    public List&lt;User&gt; getUsers() {
+<span class="fc" id="L40">        return this.userRepository.findAll();</span>
+    }
+
+    // register
+    public User createUser(User newUser) {
+<span class="fc" id="L45">        String defaultImage = &quot;https://res.cloudinary.com/drlkip0yc/image/upload/v1679279539/fake-profile-photo_qess5v.jpg&quot;;</span>
+<span class="fc" id="L46">        newUser.setToken(UUID.randomUUID().toString());</span>
+<span class="fc" id="L47">        List&lt;String&gt; followers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L48">        List&lt;String&gt; followings = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L49">        checkIfUserExists(newUser);</span>
+<span class="fc" id="L50">        newUser.setFollowers(followers);</span>
+<span class="fc" id="L51">        newUser.setFollowings(followings);</span>
+<span class="fc" id="L52">        newUser.setImageLink(defaultImage);</span>
+<span class="fc" id="L53">        newUser = userRepository.save(newUser);</span>
+<span class="fc" id="L54">        log.debug(&quot;Created Information for User: {}&quot;, newUser);</span>
+<span class="fc" id="L55">        return newUser;</span>
+    }
+
+    private void checkIfUserExists(User userToBeCreated) {
+<span class="fc" id="L59">        User userByUsername = userRepository.findByUsername(userToBeCreated.getUsername());</span>
+
+<span class="fc" id="L61">        String baseErrorMessage = &quot;The %s provided %s not unique. Therefore, the user could not be created!&quot;;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (userByUsername != null) {</span>
+<span class="fc" id="L63">            throw new ResponseStatusException(HttpStatus.CONFLICT,</span>
+<span class="fc" id="L64">                    String.format(baseErrorMessage, &quot;username&quot;, &quot;is&quot;));</span>
+        }
+<span class="fc" id="L66">    }</span>
+
+    // login
+    public User loginUser(User user) {
+<span class="fc" id="L70">        user = checkIfPasswordWrong(user);</span>
+<span class="fc" id="L71">        user.setToken(UUID.randomUUID().toString());</span>
+
+<span class="fc" id="L73">        return user;</span>
+    }
+
+    private User checkIfPasswordWrong(User userToBeLoggedIn) {
+
+<span class="fc" id="L78">        User userByUsername = userRepository.findByUsername(userToBeLoggedIn.getUsername());</span>
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (userByUsername == null) {</span>
+<span class="fc" id="L81">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Username may not exist!!&quot;);</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        } else if (!userByUsername.getPassword().equals(userToBeLoggedIn.getPassword())) {</span>
+<span class="fc" id="L83">            throw new ResponseStatusException(HttpStatus.FORBIDDEN, &quot;Password Incorrect!&quot;);</span>
+        } else {
+<span class="fc" id="L85">            return userByUsername;</span>
+        }
+    }
+
+    public User getUserById(String userId) {
+<span class="fc" id="L90">        Optional&lt;User&gt; checkUser = Optional.ofNullable(userRepository.findByUserId(userId));</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (checkUser.isPresent()) {</span>
+<span class="fc" id="L92">            return checkUser.get();</span>
+        } else {
+<span class="fc" id="L94">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User was not found!&quot;);</span>
+        }
+    }
+
+    // logout
+    public void logoutUser(User user) {
+<span class="fc" id="L100">        user.setToken(&quot;&quot;);</span>
+<span class="fc" id="L101">    }</span>
+
+    //edit profile
+    public void editUser(User userInput) {
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (!userRepository.existsById(userInput.getUserId())) {</span>
+<span class="fc" id="L106">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;user does not exists&quot;);</span>
+        }
+
+<span class="fc" id="L109">        User editedUser = getUserById(userInput.getUserId());</span>
+
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">        if (userInput.getUsername().equals(editedUser.getUsername())) {</span>
+<span class="nc" id="L112">            editedUser.setIntro(userInput.getIntro());</span>
+<span class="nc" id="L113">            editedUser.setImageLink(userInput.getImageLink());</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        } else if (userRepository.findByUsername(userInput.getUsername()) == null) {</span>
+<span class="fc" id="L115">            editedUser.setUsername(userInput.getUsername());</span>
+<span class="fc" id="L116">            editedUser.setIntro(userInput.getIntro());</span>
+<span class="fc" id="L117">            editedUser.setImageLink(userInput.getImageLink());</span>
+        } else {
+<span class="nc" id="L119">            throw new ResponseStatusException(HttpStatus.CONFLICT, &quot;username exists&quot;);</span>
+        }
+
+<span class="fc" id="L122">        userRepository.save(editedUser);</span>
+
+<span class="fc" id="L124">    }</span>
+
+    public void editUserPassword(User userInput) {
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        if (!userRepository.existsById(userInput.getUserId())) {</span>
+<span class="nc" id="L128">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;user does not exists&quot;);</span>
+        }
+
+<span class="fc" id="L131">        User editedUser = getUserById(userInput.getUserId());</span>
+<span class="fc" id="L132">        editedUser.setPassword(userInput.getPassword());</span>
+
+<span class="fc" id="L134">        userRepository.save(editedUser);</span>
+<span class="fc" id="L135">    }</span>
+
+    public boolean userFollowsUser(String userId1, String userId2) {
+<span class="fc" id="L138">        Optional&lt;User&gt; user1 = userRepository.findById(userId1);</span>
+<span class="fc" id="L139">        Optional&lt;User&gt; user2 = userRepository.findById(userId2);</span>
+<span class="pc bpc" id="L140" title="1 of 4 branches missed.">        if (user1.isEmpty() || user2.isEmpty()) {</span>
+<span class="fc" id="L141">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="pc bpc" id="L143" title="2 of 4 branches missed.">        if (!user2.get().getFollowers().contains(userId1) &amp;&amp; !user1.get().getFollowings().contains(userId2)) {</span>
+<span class="fc" id="L144">            user2.get().addFollowers(userId1);</span>
+<span class="fc" id="L145">            user1.get().addFollowings(userId2);</span>
+        }
+<span class="fc" id="L147">        userRepository.save(user2.get());</span>
+<span class="fc" id="L148">        userRepository.save(user1.get());</span>
+
+        //set notification to user1
+<span class="fc" id="L151">        Notification notification = new Notification();</span>
+<span class="fc" id="L152">        notification.setActorId(userId1);</span>
+<span class="fc" id="L153">        notification.setActorName(user1.get().username);</span>
+<span class="fc" id="L154">        notification.setMethod(&quot;follow&quot;);</span>
+<span class="fc" id="L155">        notification.setOwnerId(userId2);</span>
+<span class="fc" id="L156">        notificationService.create(notification);</span>
+<span class="fc" id="L157">        return true;</span>
+    }
+
+    public boolean userUnfollowsUser(String userId1, String userId2) {
+<span class="fc" id="L161">        Optional&lt;User&gt; user1 = userRepository.findById(userId1);</span>
+<span class="fc" id="L162">        Optional&lt;User&gt; user2 = userRepository.findById(userId2);</span>
+<span class="pc bpc" id="L163" title="2 of 4 branches missed.">        if (user1.isEmpty() || user2.isEmpty()) {</span>
+<span class="nc" id="L164">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="pc bpc" id="L166" title="2 of 4 branches missed.">        if (user2.get().getFollowers().contains(userId1) &amp;&amp; user1.get().getFollowings().contains(userId2)) {</span>
+<span class="fc" id="L167">            user2.get().removeFollowers(userId1);</span>
+<span class="fc" id="L168">            user1.get().removeFollowings(userId2);</span>
+        }
+<span class="fc" id="L170">        userRepository.save(user2.get());</span>
+<span class="fc" id="L171">        userRepository.save(user1.get());</span>
+<span class="fc" id="L172">        return true;</span>
+    }
+
+    public boolean user1FollowUser2(String userId1, String userId2) {
+<span class="fc" id="L176">        Optional&lt;User&gt; user1 = userRepository.findById(userId1);</span>
+<span class="fc" id="L177">        Optional&lt;User&gt; user2 = userRepository.findById(userId2);</span>
+<span class="pc bpc" id="L178" title="2 of 4 branches missed.">        if (user1.isEmpty() || user2.isEmpty()) {</span>
+<span class="nc" id="L179">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="fc" id="L181">        return user1.get().getFollowings().contains(userId2);</span>
+    }
+
+    public List&lt;User&gt; getFollowersById(String userId) {
+<span class="fc" id="L185">        Optional&lt;User&gt; targetUser = userRepository.findById(userId);</span>
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">        if (targetUser.isEmpty()) {</span>
+<span class="nc" id="L187">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="fc" id="L189">        List&lt;User&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        for (String id : targetUser.get().getFollowers()) {</span>
+<span class="fc" id="L191">            User follower = userRepository.findByUserId(id);</span>
+<span class="fc" id="L192">            result.add(follower);</span>
+<span class="fc" id="L193">        }</span>
+<span class="fc" id="L194">        return result;</span>
+    }
+
+    public List&lt;User&gt; getFollowingsById(String userId) {
+<span class="fc" id="L198">        Optional&lt;User&gt; targetUser = userRepository.findById(userId);</span>
+<span class="pc bpc" id="L199" title="1 of 2 branches missed.">        if (targetUser.isEmpty()) {</span>
+<span class="nc" id="L200">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;User is not found!&quot;);</span>
+        }
+<span class="fc" id="L202">        List&lt;User&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">        for (String id : targetUser.get().getFollowings()) {</span>
+<span class="fc" id="L204">            User follower = userRepository.findByUserId(id);</span>
+<span class="fc" id="L205">            result.add(follower);</span>
+<span class="fc" id="L206">        }</span>
+<span class="fc" id="L207">        return result;</span>
+    }
+
+    public List&lt;String&gt; getLikedNotes(String userId) {
+<span class="fc" id="L211">        List&lt;String&gt; likedNotes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L212">        Document query = new Document(&quot;likedUsers&quot;, userId);</span>
+
+<span class="fc" id="L214">        FindIterable&lt;Document&gt; results = notesCollection.find(query);</span>
+<span class="pc bpc" id="L215" title="1 of 2 branches missed.">        for (Document doc : results) {</span>
+<span class="nc" id="L216">            Document document = doc;</span>
+<span class="nc" id="L217">            String noteId = doc.getObjectId(&quot;_id&quot;).toString();</span>
+<span class="nc" id="L218">            likedNotes.add(noteId);</span>
+<span class="nc" id="L219">        }</span>
+<span class="fc" id="L220">        return likedNotes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
