@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "CICD"
+      - "dev"
       
 jobs:
   docker_sonarqube:
