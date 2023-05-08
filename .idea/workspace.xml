@@ -5,13 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b334e8-70ba-4547-b23b-3db19f60a0e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationWebsocketConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/ASESpaghettiCode/UserServer/Websocket/NotificationWebsocketConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/UserServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/UserServerApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -27,6 +45,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="UserServer" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="UserServer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -48,6 +71,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2OhFhCTshL6tsyH4OXo0UO9iRPE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -55,12 +89,20 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Plan2Go-post-server" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.33678162" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -70,7 +112,43 @@
       <recent name="ASESpaghettiCode.UserServer.Websocket" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.UserServerApplication (1)">
+    <configuration name="ASESpaghettiCode.UserServer in UserServer.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserServer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ASESpaghettiCode.UserServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ASESpaghettiCode.UserServer" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServer in UserServer.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserServer.test" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/ASESpaghettiCode/UserServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ASE-SpaghettiCode.UserServer.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ASESpaghettiCode.UserServer.UserServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="UserServer.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ASESpaghettiCode.UserServer.UserServerApplication" />
@@ -78,6 +156,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ASESpaghettiCode.UserServer in UserServer.test" />
+        <item itemvalue="JUnit.UserServer in UserServer.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,7 +174,13 @@
       <workItem from="1682005027824" duration="5489000" />
       <workItem from="1682033533427" duration="34262000" />
       <workItem from="1682555737454" duration="11287000" />
-      <workItem from="1683381373600" duration="2645000" />
+      <workItem from="1682839262994" duration="1580000" />
+      <workItem from="1682840900079" duration="1105000" />
+      <workItem from="1682842148073" duration="2748000" />
+      <workItem from="1682844972357" duration="3009000" />
+      <workItem from="1682930088905" duration="17000" />
+      <workItem from="1683534754888" duration="1196000" />
+      <workItem from="1683549539219" duration="2891000" />
     </task>
     <servers />
   </component>
@@ -110,7 +200,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/UserServer$ASESpaghettiCode_UserServer_in_UserServer_test.ic" NAME="ASESpaghettiCode.UserServer in UserServer.test Coverage Results" MODIFIED="1682798308057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/UserServer$ASESpaghettiCode_UserServer_in_UserServer_test.ic" NAME="ASESpaghettiCode.UserServer in UserServer.test Coverage Results" MODIFIED="1683534979136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ASESpaghettiCode.UserServer.*</FILTER>
     </SUITE>
   </component>
