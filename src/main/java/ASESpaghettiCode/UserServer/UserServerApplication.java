@@ -38,6 +38,10 @@ public class UserServerApplication implements CommandLineRunner {
 		repository.save(new User("Alice","123456",""));
 		repository.save(new User("Jessica","123456",""));
 
+		User userForTest = new User("test","123456","");
+		userForTest.setUserId("1");
+		repository.save(userForTest);
+
 		System.out.println("-------------------------------");
 		for (User user : repository.findAll()) {
 			System.out.println(user);
