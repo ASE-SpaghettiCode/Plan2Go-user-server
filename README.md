@@ -9,6 +9,8 @@ Sprint Boot\
 WebSocket
 
 ## Launch & Deployment
+### MongoDB setup
+We use MongoDB as our database, make sure you installed MongoDB locally and running before you start the application.
 
 ### Building with Gradle
 
