@@ -4,9 +4,9 @@ This server is responsible for user management of Plan2Go.\
 The default server.port = 8081
 
 ## Technology
-MongoDB
-Sprint Boot
-WebSocket
+MongoDB\
+Sprint Boot\
+WebSocket\
 
 ## Launch & Deployment
 
