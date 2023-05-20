@@ -6,7 +6,7 @@ The default server.port = 8081
 ## Technology
 MongoDB\
 Sprint Boot\
-WebSocket\
+WebSocket
 
 ## Launch & Deployment
 
