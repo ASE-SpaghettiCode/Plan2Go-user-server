@@ -13,15 +13,10 @@ import java.util.UUID;
 
 
 @SpringBootApplication
-public class UserServerApplication implements CommandLineRunner {
+public class UserServerApplication {
 
 	@Autowired
 	private UserRepository repository;
-
-//	@Bean //this bean is for sending Restful request to travelNoteServer
-//	public RestTemplate getRestTemplate(){
-//		return new RestTemplate();
-//	}
 
 	@Bean
 	public RestTemplate getRestTemplate(){
@@ -30,23 +25,6 @@ public class UserServerApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserServerApplication.class, args);
-	}
-
-	@Override
-	public void run(String...args) throws Exception{
-		repository.deleteAll();
-		repository.save(new User("Alice","123456",""));
-		repository.save(new User("Jessica","123456",""));
-
-		User userForTest = new User("test","123456","");
-		userForTest.setUserId("1");
-		repository.save(userForTest);
-
-		System.out.println("-------------------------------");
-		for (User user : repository.findAll()) {
-			System.out.println(user);
-		}
-		System.out.println();
 	}
 
 
