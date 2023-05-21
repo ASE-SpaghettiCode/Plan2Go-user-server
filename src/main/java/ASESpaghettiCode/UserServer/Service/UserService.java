@@ -1,5 +1,7 @@
 package ASESpaghettiCode.UserServer.Service;
 
+import ASESpaghettiCode.UserServer.Controller.RestTemplateErrorHandler;
+import ASESpaghettiCode.UserServer.Model.Note;
 import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 
@@ -8,16 +10,25 @@ import ASESpaghettiCode.UserServer.Websocket.NotificationService;
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
 import org.slf4j.Logger;
 
+
 @Service
+@Transactional
 public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
@@ -25,6 +36,13 @@ public class UserService {
     private MongoCollection<Document> notesCollection;
     private NotificationService notificationService;
 
+    @Value("{NoteServerLocation}")
+    private String NoteServerLocation;
+
+    @Autowired
+    private RestTemplate restTemplate = new RestTemplateBuilder()
+            .errorHandler(new RestTemplateErrorHandler())
+            .build();
 
     @Autowired
     public UserService(UserRepository userRepository,NotificationService notificationService) {
@@ -207,16 +225,7 @@ public class UserService {
         return result;
     }
 
-    public List<String> getLikedNotes(String userId) {
-        List<String> likedNotes = new ArrayList<>();
-        Document query = new Document("likedUsers", userId);
-
-        FindIterable<Document> results = notesCollection.find(query);
-        for (Document doc : results) {
-            Document document = doc;
-            String noteId = doc.getObjectId("_id").toString();
-            likedNotes.add(noteId);
-        }
-        return likedNotes;
+    public List<String> getLikedNotes(String userId){
+        return userRepository.findByUserId(userId).getLikedlist();
     }
 }

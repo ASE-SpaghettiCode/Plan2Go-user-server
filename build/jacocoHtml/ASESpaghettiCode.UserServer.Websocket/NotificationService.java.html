@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotificationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Websocket</a> &gt; <span class="el_source">NotificationService.java</span></div><h1>NotificationService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Websocket;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotificationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Websocket</a> &gt; <span class="el_source">NotificationService.java</span></div><h1>NotificationService.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Websocket;
 
+import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 import ASESpaghettiCode.UserServer.Websocket.NotificationModel.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,30 +26,63 @@ public class NotificationService {
 
 
     @Autowired
-<span class="fc" id="L27">    public NotificationService( NotificationRepository notificationRepository, SimpMessagingTemplate simpMessagingTemplate,UserRepository userRepository) {</span>
-<span class="fc" id="L28">        this.notificationRepository = notificationRepository;</span>
-<span class="fc" id="L29">        this.simpMessagingTemplate = simpMessagingTemplate;</span>
-<span class="fc" id="L30">        this.userRepository = userRepository;</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L29">    public NotificationService( NotificationRepository notificationRepository, SimpMessagingTemplate simpMessagingTemplate,UserRepository userRepository) {</span>
+<span class="fc" id="L30">        this.notificationRepository = notificationRepository;</span>
+<span class="fc" id="L31">        this.simpMessagingTemplate = simpMessagingTemplate;</span>
+<span class="fc" id="L32">        this.userRepository = userRepository;</span>
+<span class="fc" id="L33">    }</span>
 
     public void create(Notification notification) {
-<span class="nc" id="L34">        notificationRepository.save(notification);</span>
-<span class="nc" id="L35">        simpMessagingTemplate.convertAndSend(&quot;/mailbox/&quot;+notification.getOwnerId()+&quot;/fetch&quot;, notification);</span>
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L36">        notificationRepository.save(notification);</span>
+<span class="nc" id="L37">        String noteOrPost = notification.getTargetType();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (noteOrPost.equals(&quot;note&quot;)){</span>
+<span class="nc" id="L39">            String actorId = notification.getActorId();</span>
+<span class="nc" id="L40">            String noteId = notification.getTargetId();</span>
+<span class="nc" id="L41">            Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (userOptional.isPresent()) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">                if (!userOptional.get().getLikedlist().contains(noteId)){</span>
+                    // if noteId is not already in the list
+<span class="nc" id="L45">                    userOptional.get().addLikedlist(noteId);</span>
+                }
+<span class="nc" id="L47">                userRepository.save(userOptional.get());</span>
+            }
+        }
+<span class="nc" id="L50">        simpMessagingTemplate.convertAndSend(&quot;/mailbox/&quot;+notification.getOwnerId()+&quot;/fetch&quot;, notification);</span>
+<span class="nc" id="L51">    }</span>
+
+
+    public void deleteNoteFromLikedList(Notification notification) {
+<span class="nc" id="L55">        String noteOrPost = notification.getTargetType();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (noteOrPost.equals(&quot;note&quot;)){</span>
+<span class="nc" id="L57">            System.out.printf(&quot;noteOrPost.equals(\&quot;note\&quot;)&quot;);</span>
+<span class="nc" id="L58">            String actorId = notification.getActorId();</span>
+<span class="nc" id="L59">            String noteId = notification.getTargetId();</span>
+<span class="nc" id="L60">            Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (userOptional.isPresent()) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                if (userOptional.get().getLikedlist().contains(noteId)){</span>
+<span class="nc" id="L63">                    System.out.println(&quot;likelist does contained noteId&quot;);</span>
+<span class="nc" id="L64">                    System.out.println(userOptional.get().getLikedlist());</span>
+<span class="nc" id="L65">                    userOptional.get().removeNoteIdFromLikedlist(noteId);</span>
+
+                }
+<span class="nc" id="L68">                userRepository.save(userOptional.get());</span>
+            }
+        }
+<span class="nc" id="L71">    }</span>
 
 
     public List&lt;Notification&gt; getNotifications(String userId) {
-<span class="nc" id="L40">        Optional&lt;List&lt;Notification&gt;&gt; sortedList = Optional.ofNullable(notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;)));</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (sortedList.isEmpty()) {</span>
-<span class="nc" id="L42">            return new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L75">        Optional&lt;List&lt;Notification&gt;&gt; sortedList = Optional.ofNullable(notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;)));</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (sortedList.isEmpty()) {</span>
+<span class="nc" id="L77">            return new ArrayList&lt;&gt;();</span>
         }
-<span class="nc" id="L44">        sortedList.get().stream().forEach(notification-&gt;notification.setActorName(userRepository.findByUserId(notification.getActorId()).getUsername()));</span>
-<span class="nc" id="L45">        return sortedList.get();</span>
+<span class="nc" id="L79">        sortedList.get().stream().forEach(notification-&gt;notification.setActorName(userRepository.findByUserId(notification.getActorId()).getUsername()));</span>
+<span class="nc" id="L80">        return sortedList.get();</span>
     }
 
     public void deleteNotificationsByOwnerId(String userId) {
-<span class="nc" id="L49">        List&lt;Notification&gt; notificationList = notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;));</span>
-<span class="nc" id="L50">        notificationRepository.deleteAll(notificationList);</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L84">        List&lt;Notification&gt; notificationList = notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;));</span>
+<span class="nc" id="L85">        notificationRepository.deleteAll(notificationList);</span>
+<span class="nc" id="L86">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

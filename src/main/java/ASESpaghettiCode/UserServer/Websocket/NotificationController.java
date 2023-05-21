@@ -43,6 +43,14 @@ public class NotificationController {
         notificationService.create(newNotification);
     }
 
+    @PutMapping("/notifications")
+    @ResponseStatus(HttpStatus.OK)
+    public void putLikeList(@RequestBody Notification notification) {
+        System.out.println("delete method is called by");
+        System.out.println(notification);
+        notificationService.deleteNoteFromLikedList(notification);
+    }
+
 
 
 
