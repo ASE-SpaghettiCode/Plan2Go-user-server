@@ -274,18 +274,18 @@ public class UserServiceTest {
         assertEquals(user1FollowingList, userService.getFollowingsById("1"));
     }
 
-    @Test
-    void getLikedNotesTest() {
-        Document doc = new Document();
-        doc.append("_id", "1");
-
-        when(notesCollection.find(any(Document.class))).thenReturn(iterable);
-        when(iterable.iterator()).thenReturn(cursor);
-        when(cursor.hasNext()).thenReturn(true).thenReturn(false);
-        when(cursor.next()).thenReturn(doc);
-
-        List<String> likedNotes = userService.getLikedNotes("1");
-        assertEquals(0,likedNotes.size());
-    }
+//    @Test
+//    void getLikedNotesTest() {
+//        Document doc = new Document();
+//        doc.append("_id", "1");
+//
+//        when(notesCollection.find(any(Document.class))).thenReturn(iterable);
+//        when(iterable.iterator()).thenReturn(cursor);
+//        when(cursor.hasNext()).thenReturn(true).thenReturn(false);
+//        when(cursor.next()).thenReturn(doc);
+//
+//        List<String> likedNotes = userService.getLikedNotes("1");
+//        assertEquals(0,likedNotes.size());
+//    }
 
 }

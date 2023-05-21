@@ -1,5 +1,6 @@
 package ASESpaghettiCode.UserServer.Websocket;
 
+import ASESpaghettiCode.UserServer.Model.User;
 import ASESpaghettiCode.UserServer.Repository.UserRepository;
 import ASESpaghettiCode.UserServer.Websocket.NotificationModel.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,40 @@ public class NotificationService {
 
     public void create(Notification notification) {
         notificationRepository.save(notification);
+        String noteOrPost = notification.getTargetType();
+        if (noteOrPost.equals("note")){
+            String actorId = notification.getActorId();
+            String noteId = notification.getTargetId();
+            Optional<User> userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));
+            if (userOptional.isPresent()) {
+                if (!userOptional.get().getLikedlist().contains(noteId)){
+                    // if noteId is not already in the list
+                    userOptional.get().addLikedlist(noteId);
+                }
+                userRepository.save(userOptional.get());
+            }
+        }
         simpMessagingTemplate.convertAndSend("/mailbox/"+notification.getOwnerId()+"/fetch", notification);
+    }
+
+
+    public void deleteNoteFromLikedList(Notification notification) {
+        String noteOrPost = notification.getTargetType();
+        if (noteOrPost.equals("note")){
+            System.out.printf("noteOrPost.equals(\"note\")");
+            String actorId = notification.getActorId();
+            String noteId = notification.getTargetId();
+            Optional<User> userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));
+            if (userOptional.isPresent()) {
+                if (userOptional.get().getLikedlist().contains(noteId)){
+                    System.out.println("likelist does contained noteId");
+                    System.out.println(userOptional.get().getLikedlist());
+                    userOptional.get().removeNoteIdFromLikedlist(noteId);
+
+                }
+                userRepository.save(userOptional.get());
+            }
+        }
     }
 
 

@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Model;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UserServer</a> &gt; <a href="index.source.html" class="el_package">ASESpaghettiCode.UserServer.Model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package ASESpaghettiCode.UserServer.Model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
-<span class="pc bpc" id="L10" title="77 of 78 branches missed.">@Data</span>
+<span class="pc bpc" id="L11" title="77 of 78 branches missed.">@Data</span>
 @Document(collection = &quot;user&quot;)
 public class User{
     @Id
@@ -19,105 +20,109 @@ public class User{
     public String imageLink;
     public List&lt;String&gt; followers;
     public List&lt;String&gt; followings;
-    public List&lt;String&gt; likedlist;
+<span class="fc" id="L23">    public List&lt;String&gt; likedlist = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L24">    public User(String username, String password, String token){</span>
-<span class="fc" id="L25">        this.password=password;</span>
-<span class="fc" id="L26">        this.username=username;</span>
-<span class="fc" id="L27">        this.token=token;</span>
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L25">    public User(String username, String password, String token){</span>
+<span class="fc" id="L26">        this.password=password;</span>
+<span class="fc" id="L27">        this.username=username;</span>
+<span class="fc" id="L28">        this.token=token;</span>
+<span class="fc" id="L29">    }</span>
 
     public String getUserId() {
-<span class="fc" id="L31">        return userId;</span>
+<span class="fc" id="L32">        return userId;</span>
     }
 
     public String getPassword() {
-<span class="fc" id="L35">        return password;</span>
+<span class="fc" id="L36">        return password;</span>
     }
 
     public String getUsername(){
-<span class="fc" id="L39">        return username;</span>
+<span class="fc" id="L40">        return username;</span>
     }
 
     public void setUserId(String userId) {
-<span class="fc" id="L43">        this.userId = userId;</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L44">        this.userId = userId;</span>
+<span class="fc" id="L45">    }</span>
 
     public void setPassword(String password) {
-<span class="fc" id="L47">        this.password = password;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L48">        this.password = password;</span>
+<span class="fc" id="L49">    }</span>
 
     public void setUsername(String username) {
-<span class="fc" id="L51">        this.username = username;</span>
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L52">        this.username = username;</span>
+<span class="fc" id="L53">    }</span>
 
     public String getToken() {
-<span class="fc" id="L55">        return token;</span>
+<span class="fc" id="L56">        return token;</span>
     }
 
     public void setToken(String token) {
-<span class="fc" id="L59">        this.token = token;</span>
-<span class="fc" id="L60">    }</span>
+<span class="fc" id="L60">        this.token = token;</span>
+<span class="fc" id="L61">    }</span>
 
     public String getIntro(){
-<span class="fc" id="L63">        return intro;</span>
+<span class="fc" id="L64">        return intro;</span>
     }
 
     public void setIntro(String intro) {
-<span class="fc" id="L67">        this.intro = intro;</span>
-<span class="fc" id="L68">    }</span>
+<span class="fc" id="L68">        this.intro = intro;</span>
+<span class="fc" id="L69">    }</span>
 
     public void setImageLink(String imageLink) {
-<span class="fc" id="L71">        this.imageLink = imageLink;</span>
-<span class="fc" id="L72">    }</span>
+<span class="fc" id="L72">        this.imageLink = imageLink;</span>
+<span class="fc" id="L73">    }</span>
 
     public String getImageLink() {
-<span class="fc" id="L75">        return imageLink;</span>
+<span class="fc" id="L76">        return imageLink;</span>
     }
 
     public List&lt;String&gt; getFollowers() {
-<span class="fc" id="L79">        return this.followers;</span>
+<span class="fc" id="L80">        return this.followers;</span>
     }
 
     public void setFollowers(List&lt;String&gt; initialList) {
-<span class="fc" id="L83">        this.followers = initialList;</span>
-<span class="fc" id="L84">    }</span>
+<span class="fc" id="L84">        this.followers = initialList;</span>
+<span class="fc" id="L85">    }</span>
 
     public void addFollowers(String userId) {
-<span class="fc" id="L87">        this.followers.add(userId);</span>
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L88">        this.followers.add(userId);</span>
+<span class="fc" id="L89">    }</span>
 
     public void removeFollowers(String userId) {
-<span class="fc" id="L91">        this.followers.remove(userId);</span>
-<span class="fc" id="L92">    }</span>
+<span class="fc" id="L92">        this.followers.remove(userId);</span>
+<span class="fc" id="L93">    }</span>
 
     public List&lt;String&gt; getFollowings() {
-<span class="fc" id="L95">        return this.followings;</span>
+<span class="fc" id="L96">        return this.followings;</span>
     }
 
     public void setFollowings(List&lt;String&gt; initialList) {
-<span class="fc" id="L99">        this.followings = initialList;</span>
-<span class="fc" id="L100">    }</span>
+<span class="fc" id="L100">        this.followings = initialList;</span>
+<span class="fc" id="L101">    }</span>
 
     public void addFollowings(String userId) {
-<span class="fc" id="L103">        this.followings.add(userId);</span>
-<span class="fc" id="L104">    }</span>
+<span class="fc" id="L104">        this.followings.add(userId);</span>
+<span class="fc" id="L105">    }</span>
 
     public void removeFollowings(String userId) {
-<span class="fc" id="L107">        this.followings.remove(userId);</span>
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L108">        this.followings.remove(userId);</span>
+<span class="fc" id="L109">    }</span>
 
     public List&lt;String&gt; getLikedlist() {
-<span class="fc" id="L111">        return likedlist;</span>
+<span class="fc" id="L112">        return likedlist;</span>
     }
 
-    public void setLikedlist(List&lt;String&gt; likedlist) {
-<span class="fc" id="L115">        this.likedlist = likedlist;</span>
-<span class="fc" id="L116">    }</span>
+    public void addLikedlist(String noteId) {
+<span class="nc" id="L116">        this.likedlist.add(noteId);</span>
+<span class="nc" id="L117">    }</span>
+
+    public void removeNoteIdFromLikedlist(String noteId) {
+<span class="nc" id="L120">        this.likedlist.remove(noteId);</span>
+<span class="nc" id="L121">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L120">        return &quot;User{&quot; +</span>
+<span class="fc" id="L125">        return &quot;User{&quot; +</span>
                 &quot;id='&quot; + userId + '\'' +
                 &quot;, username='&quot; + username + '\'' +
                 &quot;, password=&quot; + password+'\''+
