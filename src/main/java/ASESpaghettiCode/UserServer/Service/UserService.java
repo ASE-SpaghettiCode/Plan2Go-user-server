@@ -225,34 +225,7 @@ public class UserService {
         return result;
     }
 
-    /*public List<String> getLikedNotes(String userId) {
-        List<String> likedNotes = new ArrayList<>();
-        Document query = new Document("likedUsers", userId);
-
-        FindIterable<Document> results = notesCollection.find(query);
-        for (Document doc : results) {
-            Document document = doc;
-            String noteId = doc.getObjectId("_id").toString();
-            likedNotes.add(noteId);
-        }
-        return likedNotes;
-    }*/
     public List<String> getLikedNotes(String userId){
-
         return userRepository.findByUserId(userId).getLikedlist();
-
-
-//        ParameterizedTypeReference<List<Note>> responseType = new ParameterizedTypeReference<List<Note>>() {};
-//        ResponseEntity<List<Note>> response = restTemplate.exchange( "http://localhost:8082/notes", HttpMethod.GET, null, responseType);
-//        //ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8082/notes", List.class);
-//        List<Note> notes = response.getBody();
-//        //check if the attribute likedUsers in the Notes includes userId, if so, add the noteId into likedNotesId
-//        List<String> likedNotesId = new ArrayList<>();
-//        for (Note note: notes){
-//            if(note.getLikedUsers().contains(userId)){
-//                likedNotesId.add(String.valueOf(note.getNoteId()));
-//            }
-//        }
-//        return likedNotesId;
     }
 }
