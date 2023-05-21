@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,7 +20,7 @@ public class User{
     public String imageLink;
     public List<String> followers;
     public List<String> followings;
-    public List<String> likedlist;
+    public List<String> likedlist = new ArrayList<>();
 
     public User(String username, String password, String token){
         this.password=password;
@@ -111,8 +112,12 @@ public class User{
         return likedlist;
     }
 
-    public void setLikedlist(List<String> likedlist) {
-        this.likedlist = likedlist;
+    public void addLikedlist(String noteId) {
+        this.likedlist.add(noteId);
+    }
+
+    public void removeNoteIdFromLikedlist(String noteId) {
+        this.likedlist.remove(noteId);
     }
 
     @Override

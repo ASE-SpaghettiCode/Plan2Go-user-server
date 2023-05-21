@@ -14,10 +14,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.html" afterDir="false" />
@@ -28,9 +32,11 @@
       <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.source.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/jacocoHtml/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserServerApplication.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Websocket/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Websocket/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Websocket/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Websocket/NotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,22 +119,11 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Plan2Go-post-server" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.33678162" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ASESpaghettiCode.UserServer.Websocket" />
@@ -238,13 +233,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/UserServer$ASESpaghettiCode_UserServer_in_UserServer_test.ic" NAME="ASESpaghettiCode.UserServer in UserServer.test Coverage Results" MODIFIED="1683534979136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/UserServer$UserServerApplication.ic" NAME="UserServerApplication Coverage Results" MODIFIED="1684584964494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ASESpaghettiCode.UserServer.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/UserServer$UserServerApplication.ic" NAME="UserServerApplication Coverage Results" MODIFIED="1684584964494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/UserServer$ASESpaghettiCode_UserServer_in_UserServer_test.ic" NAME="ASESpaghettiCode.UserServer in UserServer.test Coverage Results" MODIFIED="1683534979136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ASESpaghettiCode.UserServer.*</FILTER>
     </SUITE>
   </component>

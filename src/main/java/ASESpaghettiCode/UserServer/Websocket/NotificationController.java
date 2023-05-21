@@ -43,6 +43,12 @@ public class NotificationController {
         notificationService.create(newNotification);
     }
 
+    @DeleteMapping("/notifications")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void delete(@RequestBody Notification newNotification) {
+        notificationService.deleteLikedList(newNotification);
+    }
+
 
 
 
