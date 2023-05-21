@@ -34,19 +34,21 @@ public class NotificationService {
 
     public void create(Notification notification) {
         notificationRepository.save(notification);
-        String noteOrPost = notification.getTargetType();
-        if (noteOrPost.equals("note")){
-            String actorId = notification.getActorId();
-            String noteId = notification.getTargetId();
-            Optional<User> userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));
-            if (userOptional.isPresent()) {
-                if (!userOptional.get().getLikedlist().contains(noteId)){
-                    // if noteId is not already in the list
-                    userOptional.get().addLikedlist(noteId);
+        try {
+            String noteOrPost = notification.getTargetType();
+            if (noteOrPost.equals("note")) {
+                String actorId = notification.getActorId();
+                String noteId = notification.getTargetId();
+                Optional<User> userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));
+                if (userOptional.isPresent()) {
+                    if (!userOptional.get().getLikedlist().contains(noteId)) {
+                        // if noteId is not already in the list
+                        userOptional.get().addLikedlist(noteId);
+                    }
+                    userRepository.save(userOptional.get());
                 }
-                userRepository.save(userOptional.get());
             }
-        }
+        }catch (Exception e){}
         simpMessagingTemplate.convertAndSend("/mailbox/"+notification.getOwnerId()+"/fetch", notification);
     }
 
@@ -54,16 +56,12 @@ public class NotificationService {
     public void deleteNoteFromLikedList(Notification notification) {
         String noteOrPost = notification.getTargetType();
         if (noteOrPost.equals("note")){
-            System.out.printf("noteOrPost.equals(\"note\")");
             String actorId = notification.getActorId();
             String noteId = notification.getTargetId();
             Optional<User> userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));
             if (userOptional.isPresent()) {
                 if (userOptional.get().getLikedlist().contains(noteId)){
-                    System.out.println("likelist does contained noteId");
-                    System.out.println(userOptional.get().getLikedlist());
                     userOptional.get().removeNoteIdFromLikedlist(noteId);
-
                 }
                 userRepository.save(userOptional.get());
             }

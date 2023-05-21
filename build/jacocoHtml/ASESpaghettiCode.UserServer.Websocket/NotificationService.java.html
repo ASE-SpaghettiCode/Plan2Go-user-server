@@ -34,55 +34,53 @@ public class NotificationService {
 
     public void create(Notification notification) {
 <span class="nc" id="L36">        notificationRepository.save(notification);</span>
-<span class="nc" id="L37">        String noteOrPost = notification.getTargetType();</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (noteOrPost.equals(&quot;note&quot;)){</span>
-<span class="nc" id="L39">            String actorId = notification.getActorId();</span>
-<span class="nc" id="L40">            String noteId = notification.getTargetId();</span>
-<span class="nc" id="L41">            Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (userOptional.isPresent()) {</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">                if (!userOptional.get().getLikedlist().contains(noteId)){</span>
-                    // if noteId is not already in the list
-<span class="nc" id="L45">                    userOptional.get().addLikedlist(noteId);</span>
+        try {
+<span class="nc" id="L38">            String noteOrPost = notification.getTargetType();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (noteOrPost.equals(&quot;note&quot;)) {</span>
+<span class="nc" id="L40">                String actorId = notification.getActorId();</span>
+<span class="nc" id="L41">                String noteId = notification.getTargetId();</span>
+<span class="nc" id="L42">                Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">                if (userOptional.isPresent()) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                    if (!userOptional.get().getLikedlist().contains(noteId)) {</span>
+                        // if noteId is not already in the list
+<span class="nc" id="L46">                        userOptional.get().addLikedlist(noteId);</span>
+                    }
+<span class="nc" id="L48">                    userRepository.save(userOptional.get());</span>
                 }
-<span class="nc" id="L47">                userRepository.save(userOptional.get());</span>
             }
-        }
-<span class="nc" id="L50">        simpMessagingTemplate.convertAndSend(&quot;/mailbox/&quot;+notification.getOwnerId()+&quot;/fetch&quot;, notification);</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L51">        }catch (Exception e){}</span>
+<span class="nc" id="L52">        simpMessagingTemplate.convertAndSend(&quot;/mailbox/&quot;+notification.getOwnerId()+&quot;/fetch&quot;, notification);</span>
+<span class="nc" id="L53">    }</span>
 
 
     public void deleteNoteFromLikedList(Notification notification) {
-<span class="nc" id="L55">        String noteOrPost = notification.getTargetType();</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (noteOrPost.equals(&quot;note&quot;)){</span>
-<span class="nc" id="L57">            System.out.printf(&quot;noteOrPost.equals(\&quot;note\&quot;)&quot;);</span>
-<span class="nc" id="L58">            String actorId = notification.getActorId();</span>
-<span class="nc" id="L59">            String noteId = notification.getTargetId();</span>
-<span class="nc" id="L60">            Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (userOptional.isPresent()) {</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                if (userOptional.get().getLikedlist().contains(noteId)){</span>
-<span class="nc" id="L63">                    System.out.println(&quot;likelist does contained noteId&quot;);</span>
-<span class="nc" id="L64">                    System.out.println(userOptional.get().getLikedlist());</span>
-<span class="nc" id="L65">                    userOptional.get().removeNoteIdFromLikedlist(noteId);</span>
-
+<span class="nc" id="L57">        String noteOrPost = notification.getTargetType();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (noteOrPost.equals(&quot;note&quot;)){</span>
+<span class="nc" id="L59">            String actorId = notification.getActorId();</span>
+<span class="nc" id="L60">            String noteId = notification.getTargetId();</span>
+<span class="nc" id="L61">            Optional&lt;User&gt; userOptional = Optional.ofNullable(userRepository.findByUserId(actorId));</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (userOptional.isPresent()) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (userOptional.get().getLikedlist().contains(noteId)){</span>
+<span class="nc" id="L64">                    userOptional.get().removeNoteIdFromLikedlist(noteId);</span>
                 }
-<span class="nc" id="L68">                userRepository.save(userOptional.get());</span>
+<span class="nc" id="L66">                userRepository.save(userOptional.get());</span>
             }
         }
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L69">    }</span>
 
 
     public List&lt;Notification&gt; getNotifications(String userId) {
-<span class="nc" id="L75">        Optional&lt;List&lt;Notification&gt;&gt; sortedList = Optional.ofNullable(notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;)));</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (sortedList.isEmpty()) {</span>
-<span class="nc" id="L77">            return new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L73">        Optional&lt;List&lt;Notification&gt;&gt; sortedList = Optional.ofNullable(notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;)));</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (sortedList.isEmpty()) {</span>
+<span class="nc" id="L75">            return new ArrayList&lt;&gt;();</span>
         }
-<span class="nc" id="L79">        sortedList.get().stream().forEach(notification-&gt;notification.setActorName(userRepository.findByUserId(notification.getActorId()).getUsername()));</span>
-<span class="nc" id="L80">        return sortedList.get();</span>
+<span class="nc" id="L77">        sortedList.get().stream().forEach(notification-&gt;notification.setActorName(userRepository.findByUserId(notification.getActorId()).getUsername()));</span>
+<span class="nc" id="L78">        return sortedList.get();</span>
     }
 
     public void deleteNotificationsByOwnerId(String userId) {
-<span class="nc" id="L84">        List&lt;Notification&gt; notificationList = notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;));</span>
-<span class="nc" id="L85">        notificationRepository.deleteAll(notificationList);</span>
-<span class="nc" id="L86">    }</span>
+<span class="nc" id="L82">        List&lt;Notification&gt; notificationList = notificationRepository.findByUserId(userId, Sort.by(Sort.Direction.DESC, &quot;createdTime&quot;));</span>
+<span class="nc" id="L83">        notificationRepository.deleteAll(notificationList);</span>
+<span class="nc" id="L84">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
