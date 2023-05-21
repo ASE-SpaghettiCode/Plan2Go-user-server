@@ -5,41 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b334e8-70ba-4547-b23b-3db19f60a0e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Controller/RestTemplateErrorHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/NotificationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/NotificationRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/NotificationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/NotificationWebsocketConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8_10_33__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/Note.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/Note.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Repository/UserRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/UserServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/UserServerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationModel/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationModel/Notification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationWebsocketConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ASESpaghettiCode/UserServer/Websocket/NotificationWebsocketConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/User.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer.Model/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/UserServerApplication.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/UserServerApplication.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/UserServerApplication.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/UserServerApplication.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/ASESpaghettiCode.UserServer/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/jacocoHtml/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacocoHtml/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserServerApplication.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/UserServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/UserServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ASESpaghettiCode/UserServer/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,10 +73,13 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="dev" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -101,6 +96,13 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -194,6 +196,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServer in UserServer.test" />
+        <item itemvalue="JUnit.ASESpaghettiCode.UserServer in UserServer.test" />
         <item itemvalue="Application.UserServerApplication" />
         <item itemvalue="JUnit.ASESpaghettiCode.UserServer in UserServer.test" />
         <item itemvalue="JUnit.UserServer in UserServer.test" />
@@ -238,6 +242,9 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UserServer$ASESpaghettiCode_UserServer_in_UserServer_test.ic" NAME="ASESpaghettiCode.UserServer in UserServer.test Coverage Results" MODIFIED="1683534979136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ASESpaghettiCode.UserServer.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/UserServer$UserServerApplication.ic" NAME="UserServerApplication Coverage Results" MODIFIED="1684584964494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ASESpaghettiCode.UserServer.*</FILTER>
     </SUITE>
   </component>
